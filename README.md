@@ -89,4 +89,4 @@ Nesse projeto o foco foi automatizar uma tarefa repetitiva do dia a dia com o m�
 
 **Júnior Rodrigues**
 Coordenador de T.I. na Fundação Banco de Olhos | Estudante de Ciência da Computação
-[LinkedIn](#) · [GitHub](https://github.com/Kashalicov)
+[LinkedIn](https://www.linkedin.com/feed/) · [GitHub](https://github.com/Kashalicov)

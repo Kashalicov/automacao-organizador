@@ -10,10 +10,6 @@
 <!-- Coloque aqui um print/banner principal do projeto -->
 ![capa do projeto](./docs/cover.png)
 
-## 🔗 Links
-
-- 🎥 **Vídeo demo (1-2 min):** [link aqui](#)
-
 ## 🧠 Sobre o projeto
 
 Script de automação para resolver um problema bem comum: pastas como Downloads que acumulam arquivos de todo tipo misturados. A ferramenta varre uma pasta informada e move cada arquivo para uma subpasta de acordo com sua extensão (imagem, documento, planilha, vídeo, áudio, compactado, executável ou "Outros"), evitando sobrescrever arquivos com nomes repetidos.

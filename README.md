@@ -5,10 +5,7 @@
 ![status](https://img.shields.io/badge/status-conclu%C3%ADdo-brightgreen)
 ![license](https://img.shields.io/badge/license-MIT-blue)
 
-## 🖼️ Capa
-
-<!-- Coloque aqui um print/banner principal do projeto -->
-![capa do projeto](./docs/cover.png)
+> 🌱 Projeto de estudo, feito enquanto eu aprendia manipulação de arquivos e automação em Python.
 
 ## 🧠 Sobre o projeto
 
@@ -21,12 +18,6 @@ Script de automação para resolver um problema bem comum: pastas como Downloads
 - Prevenção de conflito de nomes (`foto.jpg` → `foto (1).jpg` se já existir)
 - Log configurável (`--verbose`) de cada ação realizada
 - Não mexe em subpastas já existentes, só em arquivos soltos na raiz informada
-
-## 🖥️ Prints
-
-| Antes | Depois |
-|---|---|
-| ![tela1](./docs/screenshot1.png) | ![tela2](./docs/screenshot2.png) |
 
 ## 🛠️ Tecnologias
 

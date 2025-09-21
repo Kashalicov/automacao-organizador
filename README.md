@@ -3,7 +3,7 @@
 > Organiza automaticamente os arquivos de uma pasta (ex: Downloads) em subpastas por categoria: Imagens, Documentos, Planilhas, Vídeos, Áudios, Compactados e mais.
 
 ![status](https://img.shields.io/badge/status-conclu%C3%ADdo-brightgreen)
-![license](https://img.shields.io/badge/license-MIT-blue)
+[![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 > 🌱 Projeto de estudo, feito enquanto eu aprendia manipulação de arquivos e automação em Python.
 

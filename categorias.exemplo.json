@@ -1,0 +1,5 @@
+{
+  "Codigo": [".py", ".js", ".ts", ".java", ".c", ".cpp", ".go"],
+  "Imagens": [".jpg", ".jpeg", ".png", ".gif", ".webp"],
+  "Documentos": [".pdf", ".doc", ".docx", ".txt"]
+}

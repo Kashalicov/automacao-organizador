@@ -14,6 +14,7 @@ Script de automação para resolver um problema bem comum: pastas como Downloads
 ## ✨ Funcionalidades
 
 - Classificação automática por extensão em 8 categorias + "Outros"
+- Categorias e extensões customizáveis via arquivo JSON (`--config`)
 - Modo simulação (`--simular`) que mostra o que seria movido sem alterar nada
 - Prevenção de conflito de nomes (`foto.jpg` → `foto (1).jpg` se já existir)
 - Log configurável (`--verbose`) de cada ação realizada
@@ -54,6 +55,9 @@ python organizador.py "C:/Users/voce/Downloads" --simular
 
 # organizar de verdade
 python organizador.py "C:/Users/voce/Downloads"
+
+# com categorias customizadas (veja categorias.exemplo.json)
+python organizador.py "C:/Users/voce/Downloads" --config categorias.exemplo.json
 ```
 
 ## ✅ Testes
@@ -68,7 +72,6 @@ Nesse projeto o foco foi automatizar uma tarefa repetitiva do dia a dia com o m�
 
 ## 🚧 Possíveis melhorias futuras
 
-- Arquivo de configuração para o usuário customizar categorias e extensões
 - Opção de organizar por data de modificação, além de por tipo
 - Modo "desfazer" a última organização
 

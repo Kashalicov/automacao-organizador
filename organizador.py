@@ -1,11 +1,12 @@
 """Organiza arquivos de uma pasta em subpastas por categoria/extensão."""
 import argparse
+import json
 import logging
 import shutil
 import sys
 from pathlib import Path
 
-CATEGORIAS = {
+CATEGORIAS_PADRAO = {
     "Imagens": {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".svg", ".webp"},
     "Documentos": {".pdf", ".doc", ".docx", ".txt", ".odt", ".rtf"},
     "Planilhas": {".xls", ".xlsx", ".csv", ".ods"},
@@ -19,9 +20,19 @@ CATEGORIAS = {
 logger = logging.getLogger("organizador")
 
 
-def categoria_da_extensao(extensao: str) -> str:
+def carregar_categorias(caminho_config: Path | None) -> dict[str, set[str]]:
+    if caminho_config is None:
+        return CATEGORIAS_PADRAO
+
+    with caminho_config.open(encoding="utf-8") as arquivo:
+        dados = json.load(arquivo)
+
+    return {categoria: set(extensoes) for categoria, extensoes in dados.items()}
+
+
+def categoria_da_extensao(extensao: str, categorias: dict[str, set[str]] = CATEGORIAS_PADRAO) -> str:
     extensao = extensao.lower()
-    for categoria, extensoes in CATEGORIAS.items():
+    for categoria, extensoes in categorias.items():
         if extensao in extensoes:
             return categoria
     return "Outros"
@@ -40,14 +51,16 @@ def destino_sem_conflito(destino: Path) -> Path:
         contador += 1
 
 
-def organizar_pasta(origem: Path, simular: bool = False) -> dict:
+def organizar_pasta(
+    origem: Path, simular: bool = False, categorias: dict[str, set[str]] = CATEGORIAS_PADRAO
+) -> dict:
     resultado = {"movidos": 0, "ignorados": 0}
 
     for item in sorted(origem.iterdir()):
         if item.is_dir():
             continue
 
-        categoria = categoria_da_extensao(item.suffix)
+        categoria = categoria_da_extensao(item.suffix, categorias)
         pasta_destino = origem / categoria
         destino = destino_sem_conflito(pasta_destino / item.name)
 
@@ -78,6 +91,10 @@ def main() -> int:
         help="Mostra o que seria feito sem mover nenhum arquivo"
     )
     parser.add_argument("--verbose", "-v", action="store_true", help="Log detalhado")
+    parser.add_argument(
+        "--config", type=Path,
+        help="Arquivo JSON com categorias e extensões customizadas (substitui as categorias padrão)"
+    )
     args = parser.parse_args()
 
     configurar_logging(args.verbose)
@@ -86,7 +103,13 @@ def main() -> int:
         logger.error("Pasta não encontrada: %s", args.pasta)
         return 1
 
-    resultado = organizar_pasta(args.pasta, simular=args.simular)
+    try:
+        categorias = carregar_categorias(args.config)
+    except (OSError, json.JSONDecodeError) as exc:
+        logger.error("Não foi possível ler o arquivo de configuração: %s", exc)
+        return 1
+
+    resultado = organizar_pasta(args.pasta, simular=args.simular, categorias=categorias)
     logger.info("Concluído. Arquivos processados: %d", resultado["movidos"])
 
     return 0
